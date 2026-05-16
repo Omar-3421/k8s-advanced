@@ -1,0 +1,21 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: issuer
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: omarmohdar3422@gmail.com
+    privateKeySecretRef:
+      name: issuer
+    solvers:
+      - dns01:
+          route53:
+            hostedZoneID: Z09759472ZWRQGXUDBW1G
+            region: eu-west-1
+        selector:
+          dnsZones:
+            - lab.omarprojects.co.uk
+      - http01:
+          ingress:
+            class: nginx

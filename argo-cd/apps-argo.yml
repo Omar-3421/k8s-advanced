@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: apps
+  namespace: argocd
+
+spec:
+  project: default
+
+  source:
+    repoURL: 'https://github.com/Omar-3421/k8s-advanced.git'
+    targetRevision: HEAD
+    path: apps
+
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: apps
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

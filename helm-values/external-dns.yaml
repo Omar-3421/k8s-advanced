@@ -1,0 +1,17 @@
+provider: aws
+
+image:
+  registry: registry.k8s.io
+  repository: external-dns/external-dns
+  tag: v0.15.0
+
+env:
+  - name: AWS_DEFAULT_REGION
+    value: eu-west-1
+
+serviceAccount:
+  annotations:
+    eks.amazonaws.com/role-arn: "arn:aws:iam::848960888054:role/external-dns"
+
+domainFilters:
+  - lab.omarprojects.co.uk
